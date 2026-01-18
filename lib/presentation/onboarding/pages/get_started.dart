@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:music_player/common/widgets/common_app_button.dart';
 import 'package:music_player/core/configs/assets/app_images.dart';
 import 'package:music_player/core/configs/assets/app_vectors.dart';
 import 'package:music_player/core/configs/theme/app_colors.dart';
+import 'package:music_player/presentation/choose_mode/pages/choose_model.dart';
 
 class GetStarted extends StatelessWidget {
   const GetStarted({super.key});
@@ -40,12 +43,23 @@ class GetStarted extends StatelessWidget {
                   style: TextStyle(fontSize: 13, color: AppColors.grey),
                 ),
                 const SizedBox(height: 20),
-                CommonAppButton(onTap: () {}, text: "Get Started"),
+                CommonAppButton(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const ChooseModel(),
+                      ),
+                    );
+                  },
+                  text: "Get Started",
+                ),
               ],
             ),
           ),
-
-          Container(color: Colors.black.withValues(alpha: 0.15)),
+          IgnorePointer(
+            child: Container(color: Colors.black.withValues(alpha: 0.15)),
+          ),
         ],
       ),
     );
