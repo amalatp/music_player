@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:music_player/common/widgets/common_app_button.dart';
 import 'package:music_player/core/configs/assets/app_images.dart';
 import 'package:music_player/core/configs/assets/app_vectors.dart';
+import 'package:music_player/presentation/auth/pages/login_or_signup.dart';
 import 'package:music_player/presentation/choose_mode/bloc/theme_cubit.dart';
 
 class ChooseModel extends StatelessWidget {
@@ -108,10 +109,10 @@ class ChooseModel extends StatelessWidget {
                 const SizedBox(height: 80),
                 CommonAppButton(
                   onTap: () {
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ChooseModel(),
+                        builder: (context) => const LoginOrSignup(),
                       ),
                     );
                   },

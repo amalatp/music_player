@@ -9,8 +9,9 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.lightBackground,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        elevation: 0,
         backgroundColor: AppColors.primaryColor,
-        textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
     ),
@@ -23,8 +24,9 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.darkBackground,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        elevation: 0,
         backgroundColor: AppColors.primaryColor,
-        textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
     ),
