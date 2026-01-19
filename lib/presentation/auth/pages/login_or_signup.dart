@@ -5,6 +5,8 @@ import 'package:music_player/common/widgets/common_app_button.dart';
 import 'package:music_player/common/widgets/common_appbar.dart';
 import 'package:music_player/core/configs/assets/app_images.dart';
 import 'package:music_player/core/configs/assets/app_vectors.dart';
+import 'package:music_player/presentation/auth/pages/register_screen.dart';
+import 'package:music_player/presentation/auth/pages/sign_in_screen.dart';
 
 class LoginOrSignup extends StatelessWidget {
   const LoginOrSignup({super.key});
@@ -50,12 +52,30 @@ class LoginOrSignup extends StatelessWidget {
                   children: [
                     Expanded(
                       flex: 1,
-                      child: CommonAppButton(onTap: () {}, text: "Register"),
+                      child: CommonAppButton(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => RegisterScreen(),
+                            ),
+                          );
+                        },
+                        text: "Register",
+                      ),
                     ),
                     Expanded(
                       flex: 1,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return SignInScreen();
+                              },
+                            ),
+                          );
+                        },
                         child: Text(
                           "Sign In",
                           style: TextStyle(

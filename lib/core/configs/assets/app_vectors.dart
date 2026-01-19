@@ -5,4 +5,6 @@ class AppVectors {
   static const String darkMode = '$basePath/dark.svg';
   static const String topPattern = '$basePath/top_pattern.svg';
   static const String bottomPattern = '$basePath/bottom_pattern.svg';
+  static const String googleLogo = '$basePath/google.svg';
+  static const String appleLogo = '$basePath/apple.svg';
 }
