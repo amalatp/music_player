@@ -5,7 +5,11 @@ import 'package:music_player/common/widgets/common_app_button.dart';
 import 'package:music_player/common/widgets/common_appbar.dart';
 import 'package:music_player/common/widgets/common_textfield.dart';
 import 'package:music_player/core/configs/assets/app_vectors.dart';
+import 'package:music_player/data/models/auth/create_user_req.dart';
+import 'package:music_player/domain/usecases/auth/sign_up_usecase.dart';
 import 'package:music_player/presentation/auth/pages/sign_in_screen.dart';
+import 'package:music_player/presentation/home/pages/home_page.dart';
+import 'package:music_player/service_locator.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
@@ -58,7 +62,35 @@ class RegisterScreen extends StatelessWidget {
                 obscureText: true,
               ),
               const SizedBox(height: 20),
-              CommonAppButton(onTap: () {}, text: "Create Account"),
+              CommonAppButton(
+                onTap: () async {
+                  var result = await sl<SignUpUseCase>()(
+                    params: CreateUserReq(
+                      email: emailController.text,
+                      password: passwordController.text,
+                      fullName: nameController.text,
+                    ),
+                  );
+
+                  result.fold(
+                    (l) {
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(SnackBar(content: Text(l)));
+                    },
+                    (r) {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ),
+                        (route) => false,
+                      );
+                    },
+                  );
+                },
+                text: "Create Account",
+              ),
               const SizedBox(height: 20),
               Row(
                 children: [

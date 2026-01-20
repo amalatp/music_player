@@ -7,6 +7,7 @@ import 'package:music_player/core/configs/theme/app_theme.dart';
 import 'package:music_player/firebase_options.dart';
 import 'package:music_player/presentation/choose_mode/bloc/theme_cubit.dart';
 import 'package:music_player/presentation/splash/pages/splash_screen.dart';
+import 'package:music_player/service_locator.dart';
 import 'package:path_provider/path_provider.dart';
 
 Future<void> main() async {
@@ -17,6 +18,7 @@ Future<void> main() async {
         : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await initializeDependencies();
   runApp(MyApp());
 }
 
