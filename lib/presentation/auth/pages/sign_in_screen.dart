@@ -5,7 +5,12 @@ import 'package:music_player/common/widgets/common_app_button.dart';
 import 'package:music_player/common/widgets/common_appbar.dart';
 import 'package:music_player/common/widgets/common_textfield.dart';
 import 'package:music_player/core/configs/assets/app_vectors.dart';
+import 'package:music_player/data/models/auth/signin_user_req.dart';
 import 'package:music_player/presentation/auth/pages/register_screen.dart';
+import 'package:music_player/presentation/home/pages/home_page.dart';
+import 'package:music_player/service_locator.dart';
+
+import '../../../domain/usecases/auth/sign_in_usecase.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
@@ -61,7 +66,34 @@ class SignInScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              CommonAppButton(onTap: () {}, text: "Sign In"),
+              CommonAppButton(
+                onTap: () async {
+                  var result = await sl<SignInUseCase>()(
+                    params: SigninUserReq(
+                      email: usernameController.text,
+                      password: passwordController.text,
+                    ),
+                  );
+
+                  result.fold(
+                    (l) {
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(SnackBar(content: Text(l)));
+                    },
+                    (r) {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ),
+                        (route) => false,
+                      );
+                    },
+                  );
+                },
+                text: "Sign In",
+              ),
               const SizedBox(height: 20),
               Row(
                 children: [
